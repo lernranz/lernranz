@@ -1,0 +1,15 @@
+[
+    {
+        "name": "Sparkassenforum",
+        "id": "sparkassenforum",
+        "aps": ["ap-1040-2ugl", "ap-1040-2ugm", "ap-1040-2ugr"]
+    },
+    {
+        "name": "Mogam",
+        "id": "mogam",
+        "aps": [
+            "ap-1060-ugv", "ap-1060-egv", "ap-1060-egh", "ap-1060-1ogv", "ap-1060-1ogh",
+            "ap-1060-2ogv", "ap-1060-2ogh", "ap-1060-3ogv"
+        ]
+    }
+]
