@@ -11,5 +11,10 @@
             "ap-1060-ugv", "ap-1060-egv", "ap-1060-egh", "ap-1060-1ogv", "ap-1060-1ogh",
             "ap-1060-2ogv", "ap-1060-2ogh", "ap-1060-3ogv"
         ]
+    },
+    {
+        "name": "Audimax-Keller",
+        "id": "audimax_keller",
+        "aps": ["ap-1420-hausmeister", "ap-1420-hungerkurve"]
     }
 ]
