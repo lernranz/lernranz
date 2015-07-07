@@ -33,6 +33,16 @@ $(document).ready(function() {
             sameElse: 'L HH:mm'
         }
     });
+    moment.locale('de', {
+        calendar: {
+            sameDay: '[heute] HH:mm',
+            lastDay: 'ddd HH:mm',
+            nextDay: '[morgen] HH:mm',
+            lastWeek: 'ddd HH:mm',
+            nextWeek: '[nächsten] ddd HH:mm',
+            sameElse: 'L HH:mm'
+        }
+    });
     $.get('../rooms.json', function(spec) {
         roomsSpec = spec;
         roomsSpec.forEach(function(room) {
