@@ -33,20 +33,25 @@ $(document).ready(function() {
             sameElse: 'L HH:mm'
         }
     });
-    $.get('../parsed/sparkassenforum.json', function(roomData) {
-        $('body').append('<h2>' + 'Sparkassenforum' + '</h2>');
-        var lastValue = roomData[0].values[roomData[0].values.length - 1];
-        $('body').append('<span>' + lastValue.y + ' users ' + moment(lastValue.time).calendar());
-        //$('body').append('<div class="plot"/>');
-        $('body').append('<div id="plot" style="width: 100%; height: 300px" class="epoch"/>');
-        $('#plot').epoch({
-            type: 'time.line',
-            data: roomData,
-            ticks: {time: 100},
-            tickFormats: {bottom: function(d) { return moment(d).calendar(); }},
-            axes: ['left', 'bottom'],
-            windowSize: 1008, // 7*24*60/10
-            historySize: 1008
+    $.get('../rooms.json', function(spec) {
+        roomsSpec = spec;
+        roomsSpec.forEach(function(room) {
+            $('body').append('<h2>' + room.name + '</h2>');
+            $('body').append('<span id="current_users_' + room.id + '"/>');
+            $('body').append(
+                    '<div id="plot_' + room.id + '" style="width: 100%; height: 150px" class="epoch"/>');
+
+            $.get('../parsed/' + room.id + '.json', function(roomData) {
+                var lastValue = roomData[0].values[roomData[0].values.length - 1];
+                $('#current_users_' + room.id).text(lastValue.y + ' WLAN-Nutzer (' + moment(lastValue.x).calendar() + ')');
+                $('#plot_' + room.id).epoch({
+                    type: 'line',
+                    data: roomData,
+                    ticks: {bottom: 7},
+                    tickFormats: {bottom: function(d) { return moment(d).calendar(); }},
+                    axes: ['left', 'bottom'],
+                });
+            });
         });
     });
 });

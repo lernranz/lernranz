@@ -14,6 +14,9 @@ def parse_aps(json_data):
             ap['building'] = building['building']
             yield ap
 
+def utc_mstimestamp(dt):
+    return int((dt - datetime.datetime(1970, 1, 1, tzinfo=datetime.timezone.utc)).total_seconds() * 1000)
+
 
 aps = {}
 roomsSpec = json.load(open('rooms.json'))
@@ -54,7 +57,7 @@ for f in files:
 
     for room in roomsSpec:
         roomFiles[room['name']]['file'][0]['values'].append({
-            'time': date.isoformat(),
+            'x': utc_mstimestamp(date),
             'y': roomCounts[room['name']]})
 
     print(str(date) + ' ' + str(roomCounts))
