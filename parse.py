@@ -1,7 +1,8 @@
-#!/bin/python3
+#!/usr/bin/python3
 
 import datetime
 import gzip
+import io
 import json
 from pathlib import Path
 import re
@@ -45,8 +46,8 @@ for f in files:
     for room in roomsSpec:
         roomCounts[room['name']] = 0
 
-    decompressed = gzip.open(str(f), mode='rt')
-    parsed = json.load(decompressed)
+    decompressed = gzip.open(str(f), mode='r')
+    parsed = json.load(io.TextIOWrapper(decompressed))
     for ap in parse_aps(parsed['data']):
         if ap['name'] in aps:
             roomCounts[aps[ap['name']]] += int(ap['user'])
