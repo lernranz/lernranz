@@ -16,5 +16,11 @@
         "name": "Audimax-Keller",
         "id": "audimax_keller",
         "aps": ["ap-1420-hausmeister", "ap-1420-hungerkurve"]
+    },
+    {
+        "name": "Semi90",
+        "id": "semi90",
+        "aps": ["ap-1580-110", "ap-1580-210", "ap-1580-212", "ap-1580-309", "ap-1580-315"],
+        "notes": "tlw. belegt durch Seminare. <a href=\"https://www.campus.rwth-aachen.de/rwth/all/roomGroups.asp?room=1580\">Belegungsplan</a>"
     }
 ]

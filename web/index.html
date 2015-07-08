@@ -20,6 +20,10 @@ h2 {
 div.info {
     float: right;
 }
+span.notes {
+    font-family: monospace;
+    margin-left: 10px;
+}
         </style>
         <script>
 $(document).ready(function() {
@@ -47,13 +51,17 @@ $(document).ready(function() {
         roomsSpec = spec;
         roomsSpec.forEach(function(room) {
             $('body').append('<h2>' + room.name + '</h2>');
-            $('body').append('<span id="current_users_' + room.id + '"/>');
+            $('body').append('<span id="current_users_' + room.id + '" class="current_users"/>');
+            $('body').append('<span id="notes_' + room.id + '" class="notes" />');
             $('body').append(
                     '<div id="plot_' + room.id + '" style="width: 100%; height: 150px" class="epoch"/>');
 
             $.get('../parsed/' + room.id + '.json', function(roomData) {
                 var lastValue = roomData[0].values[roomData[0].values.length - 1];
                 $('#current_users_' + room.id).text(lastValue.y + ' WLAN-Nutzer (' + moment(lastValue.x).calendar() + ')');
+                if (room.notes != undefined) {
+                    $('#notes_' + room.id).html(room.notes);
+                }
                 $('#plot_' + room.id).epoch({
                     type: 'line',
                     data: roomData,
