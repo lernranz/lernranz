@@ -18,7 +18,9 @@ def utc_mstimestamp(dt):
     return int((dt - datetime.datetime(1970, 1, 1, tzinfo=datetime.timezone.utc)).total_seconds() * 1000)
 
 
-threshold = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=7) # ideally 7 days
+date_now = datetime.datetime.now(datetime.timezone.utc)
+threshold = date_now - datetime.timedelta(days=7) # ideally 7 days
+
 aps = {}
 roomsSpec = json.load(open('rooms.json'))
 roomFiles= {}

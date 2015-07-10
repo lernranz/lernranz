@@ -2,7 +2,8 @@
     {
         "name": "Sparkassenforum",
         "id": "sparkassenforum",
-        "aps": ["ap-1040-2ugl", "ap-1040-2ugm", "ap-1040-2ugr"]
+        "aps": ["ap-1040-2ugl", "ap-1040-2ugm", "ap-1040-2ugr"],
+        "fullAt": 440
     },
     {
         "name": "Mogam",
@@ -10,17 +11,20 @@
         "aps": [
             "ap-1060-ugv", "ap-1060-egv", "ap-1060-egh", "ap-1060-1ogv", "ap-1060-1ogh",
             "ap-1060-2ogv", "ap-1060-2ogh", "ap-1060-3ogv"
-        ]
+        ],
+        "fullAt": 235
     },
     {
         "name": "Audimax-Keller",
         "id": "audimax_keller",
-        "aps": ["ap-1420-hausmeister", "ap-1420-hungerkurve"]
+        "aps": ["ap-1420-hausmeister", "ap-1420-hungerkurve"],
+        "fullAt": 190
     },
     {
         "name": "Semi90",
         "id": "semi90",
         "aps": ["ap-1580-110", "ap-1580-210", "ap-1580-212", "ap-1580-309", "ap-1580-315"],
-        "notes": "oft belegt durch Seminare. <a href=\"https://www.campus.rwth-aachen.de/rwth/all/roomGroups.asp?room=1580\">Belegungsplan</a>"
+        "notes": "oft belegt durch Seminare. <a href=\"https://www.campus.rwth-aachen.de/rwth/all/roomGroups.asp?room=1580\">Belegungsplan</a>",
+        "fullAt": 315
     }
 ]
