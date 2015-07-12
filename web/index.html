@@ -59,7 +59,7 @@ $(document).ready(function() {
 
             $.get('../parsed/' + room.id + '.json', function(roomData) {
                 var lastValue = roomData[0].values[roomData[0].values.length - 1];
-                $('#current_users_' + room.id).text(lastValue.y + ' WLAN-Nutzer (' + moment(lastValue.x).calendar() + ')');
+                $('#current_users_' + room.id).text(lastValue.y + ' WLAN-Nutzer (' + moment(lastValue.x).fromNow() + ')');
                 if (room.notes != undefined) {
                     $('#notes_' + room.id).html(room.notes);
                 }
