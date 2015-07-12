@@ -6,6 +6,8 @@ then
     gzip $filename
     cd /var/www/lernranz
     ./parse.py >/dev/null
+    cd /var/www/lernranz-dev
+    ./parse.py >/dev/null
 else
     rm -f $filename
 fi
