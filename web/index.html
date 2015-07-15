@@ -64,10 +64,12 @@ $(document).ready(function() {
                 if (room.notes != undefined) {
                     $('#notes_' + room.id).html(room.notes);
                 }
-                roomData.push({
-                    label: 'max',
-                    values: [{x: firstValue.x, y: room.fullAt}, {x: lastValue.x, y: room.fullAt}]
-                });
+                if (room.fullAt != undefined) {
+                    roomData.push({
+                        label: 'max',
+                        values: [{x: firstValue.x, y: room.fullAt}, {x: lastValue.x, y: room.fullAt}]
+                    });
+                }
                 $('#plot_' + room.id).epoch({
                     type: 'line',
                     data: roomData,
