@@ -1,3 +1,3 @@
 #!/bin/sh
 
-rsync -rtvP clnj.de:web/rwth-wifi/\*.json.gz raw/
+rsync -rtvP clnj.de:/home/lernranz/raw/ raw/
