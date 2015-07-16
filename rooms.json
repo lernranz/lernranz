@@ -24,13 +24,13 @@
         "name": "Semi90",
         "id": "semi90",
         "aps": ["ap-1580-110", "ap-1580-210", "ap-1580-212", "ap-1580-309", "ap-1580-315"],
-        "notes": "oft belegt durch Seminare. <a href=\"https://www.campus.rwth-aachen.de/rwth/all/roomGroups.asp?room=1580\">Belegungsplan</a>",
+        "notes": "in der VL-Zeit meist belegt durch Seminare. <a href=\"https://www.campus.rwth-aachen.de/rwth/all/roomGroups.asp?room=1580\">Belegungsplan</a>",
         "fullAt": 315
     },
     {
         "name": "Semi-Temp",
         "id": "semitemp",
         "aps": ["ap-1665-1","ap-1665-2","ap-1665-3","ap-1665-4","ap-1665-5","ap-1665-6","ap-1665-7"],
-        "notes": "oft belegt durch Seminare. <a href=\"https://www.campus.rwth-aachen.de/rwth/all/roomGroups.asp?room=1665\">Belegungsplan</a>"
+        "notes": "in der VL-Zeit meist belegt durch Seminare. <a href=\"https://www.campus.rwth-aachen.de/rwth/all/roomGroups.asp?room=1665\">Belegungsplan</a>"
     }
 ]
