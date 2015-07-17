@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -50,11 +49,13 @@ $(document).ready(function() {
     });
     $.get('../rooms.json', function(spec) {
         roomsSpec = spec;
+        $('body').append('<div id="content" ></div>');
         roomsSpec.forEach(function(room) {
-            $('body').append('<h2>' + room.name + '</h2>');
-            $('body').append('<span id="current_users_' + room.id + '" class="current_users"/>');
-            $('body').append('<span id="notes_' + room.id + '" class="notes" />');
-            $('body').append(
+            $('#content').append('<div class="room" id="'+ room.name +'" ></div>');
+            $('#'+room.name).append('<h2>' + room.name + '</h2>');
+            $('#'+room.name).append('<span id="current_users_' + room.id + '" class="current_users"/>');
+            $('#'+room.name).append('<span id="notes_' + room.id + '" class="notes" />');
+            $('#'+room.name).append(
                     '<div id="plot_' + room.id + '" style="width: 100%; height: 150px" class="epoch"/>');
 
             $.get('../parsed/' + room.id + '.json', function(roomData) {
@@ -64,12 +65,22 @@ $(document).ready(function() {
                 if (room.notes != undefined) {
                     $('#notes_' + room.id).html(room.notes);
                 }
+
                 if (room.fullAt != undefined) {
+                    room.state=lastValue.y/room.fullAt;
                     roomData.push({
                         label: 'max',
                         values: [{x: firstValue.x, y: room.fullAt}, {x: lastValue.x, y: room.fullAt}]
                     });
+                }else{
+                     room.state=0;
                 }
+                color="blue";
+                $('#'+room.name).append('<h3 class="room_state">' + room.state+ '</h3>');
+                if(room.state>0.75){color="red";}
+                else if(room.state>0.5){color="yellow";}
+                else if(room.state!=0){color="green";}
+                document.getElementById('current_users_' + room.id).style.color = color;
                 $('#plot_' + room.id).epoch({
                     type: 'line',
                     data: roomData,
@@ -82,6 +93,20 @@ $(document).ready(function() {
     });
 });
         </script>
+    <script>
+    function srt(){
+        var $divs = $("div.room");
+        console.log($divs);
+        var Ordered = $divs.sort(function (a, b) {
+        aCon = $(a).find("h3").text();
+        bCon = $(b).find("h3").text();
+        if(aCon == "0")return  1;
+        if(bCon == "0")return -1;
+        return aCon > bCon;
+    });
+    $("#content").html(Ordered);
+}
+    </script>
     </head>
     <body>
         <div class="info">
@@ -89,5 +114,6 @@ $(document).ready(function() {
             <a href="about.html">über diese Seite / about</a>
         </div>
         <h1><a href=".">LERNRaumANZeiger</a></h1>
+        <button onclick="srt()">Sort</button>
     </body>
 </html>
