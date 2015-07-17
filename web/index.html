@@ -49,7 +49,6 @@ $(document).ready(function() {
     });
     $.get('../rooms.json', function(spec) {
         roomsSpec = spec;
-        $('body').append('<div id="content" ></div>');
         roomsSpec.forEach(function(room) {
             $('#content').append('<div class="room" id="'+ room.name +'" ></div>');
             $('#'+room.name).append('<h2>' + room.name + '</h2>');
@@ -76,7 +75,7 @@ $(document).ready(function() {
                      room.state=0;
                 }
                 color="blue";
-                $('#'+room.name).append('<h3 class="room_state">' + room.state+ '</h3>');
+                $('#'+room.name).append('<h3 class="room_state" style="display:none">' + room.state+ '</h3>');
                 if(room.state>0.75){color="red";}
                 else if(room.state>0.5){color="yellow";}
                 else if(room.state!=0){color="green";}
@@ -115,5 +114,6 @@ $(document).ready(function() {
         </div>
         <h1><a href=".">LERNRaumANZeiger</a></h1>
         <button onclick="srt()">Sort</button>
+        <div id="content" ></div>
     </body>
 </html>
