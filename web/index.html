@@ -41,6 +41,8 @@ $(document).ready(function() {
             sameElse: 'L HH:mm'
         }
     });
+    var getRequests=[];
+    var roomRanks=[];
     $.get('../rooms.json', function(spec) {
         roomsSpec = spec;
         roomsSpec.forEach(function(room) {
@@ -50,7 +52,7 @@ $(document).ready(function() {
             $('body').append(
                     '<div id="plot_' + room.id + '" style="width: 100%; height: 150px" class="epoch"/>');
 
-            $.get('../parsed/' + room.id + '.json', function(roomData) {
+            getRequests.push($.get('../parsed/' + room.id + '.json', function(roomData) {
                 var firstValue = roomData[0].values[0];
                 var lastValue = roomData[0].values[roomData[0].values.length - 1];
                 $('#current_users_' + room.id).text(lastValue.y + ' WLAN-Nutzer (' + moment(lastValue.x).fromNow() + ')');
@@ -58,11 +60,15 @@ $(document).ready(function() {
                     $('#notes_' + room.id).html(room.notes);
                 }
                 if (room.fullAt != undefined) {
+                    room.state=lastValue.y/room.fullAt;
                     roomData.push({
                         label: 'max',
                         values: [{x: firstValue.x, y: room.fullAt}, {x: lastValue.x, y: room.fullAt}]
                     });
+                }else{
+                    room.state=666; 
                 }
+                roomRanks.push({'name':room.name,'state':room.state});
                 $('#plot_' + room.id).epoch({
                     type: 'line',
                     data: roomData,
@@ -70,6 +76,22 @@ $(document).ready(function() {
                     tickFormats: {bottom: function(d) { return moment(d).calendar(); }},
                     axes: ['left', 'bottom'],
                 });
+            }));
+        });
+         $.when.apply($,getRequests).then(function() {
+            roomRanks.sort(function(a,b){
+            if(a.state==0)return 1;
+            if(b.state==0)return -1;
+            return a.state>b.state});
+            var list = $('#roomRanks');
+            roomRanks.forEach(function(element) {
+                if(element.state!=666){
+                    var liClass="";
+                    if(element.state>0.75){liClass="veryFull";}
+                    else if(element.state>0.5){liClass="full";}
+                    else if(element.state!=0){liClass="normal";}
+                    list.append('<li class ="'+liClass+'">' + element.name + ' ( ' + Math.round(element.state*100) + ' % )</li>');
+                }
             });
         });
     });
@@ -90,5 +112,6 @@ $(document).ready(function() {
                 <a href="about.html">über diese Seite / about</a>
             </div>
         </div>
+        <ol id="roomRanks"></ol>
     </body>
 </html>
