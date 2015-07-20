@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import datetime
+from datetime import datetime,timedelta
 import gzip
 import io
 import json
@@ -47,6 +47,7 @@ p = Path('.')
 files = list(p.glob('raw/*.json.gz'))
 files.sort()
 
+lastDate = last_parsed_date
 for f in files:
     date_str = re.sub(
             r"^raw/(\d+)-(\d+)-(\d+)T(\d+):(\d+):(\d+)([+-]\d+):(\d+).json.gz$",
@@ -71,11 +72,17 @@ for f in files:
             roomCounts[aps[ap['name']]] += int(ap['user'])
 
     for room in roomsSpec:
+        dead=False
+        if((date-lastDate))>timedelta(hours=2)):
+            dead=True
         roomFiles[room['name']]['file'][0]['values'].append({
             'x': utc_mstimestamp(date),
-            'y': roomCounts[room['name']]})
+            'y': roomCounts[room['name']],
+            'dead': dead })
 
-    print(str(date) + ' ' + str(roomCounts))
+    print(str(date) + ' ' + str(roomCounts) + ' ' + str(dead))
+    lastDate=date
+
 
     #sys.exit()
 
