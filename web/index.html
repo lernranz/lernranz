@@ -79,8 +79,6 @@ $(document).ready(function() {
         });
         $.when.apply($,getRequests).then(function() {
             roomsSpec.sort(function(a,b){
-            if(a.state==0)return 1;
-            if(b.state==0)return -1;
             return a.state>b.state});
             var list = $('#roomRanks');
             roomsSpec.forEach(function(element) {
