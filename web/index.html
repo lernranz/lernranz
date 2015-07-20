@@ -20,6 +20,17 @@ span.notes {
 }
         </style>
         <script>
+function isRoomOpen(open,close){
+    var now = new Date();
+    nextDay = 0;
+    if(open==close)return 0;
+    if(close<open){nextDay=1};
+    minDate = new Date((now.getMonth() + 1) + " " + now.getDate() + ", " + now.getFullYear() + " " + open + ":00");
+    maxDate = new Date((now.getMonth() + 1) + " " + (now.getDate()+nextDay) + ", " + now.getFullYear() + " " + close + ":00");
+    if(now.getTime() < minDate.getTime()) return 0;
+    if(now.getTime() > maxDate.getTime()) return 0;
+    return maxDate.getTime()-now.getTime();
+}
 $(document).ready(function() {
     moment.locale('en', {
         calendar: {
@@ -41,16 +52,18 @@ $(document).ready(function() {
             sameElse: 'L HH:mm'
         }
     });
+    var getRequests=[];
+    var roomsSpec = [];
     $.get('../rooms.json', function(spec) {
         roomsSpec = spec;
-        roomsSpec.forEach(function(room) {
+        roomsSpec.forEach(function(room,index,array) {
             $('body').append('<h2>' + room.name + '</h2>');
             $('body').append('<span id="current_users_' + room.id + '" class="current_users"/>');
             $('body').append('<span id="notes_' + room.id + '" class="notes" />');
             $('body').append(
                     '<div id="plot_' + room.id + '" style="width: 100%; height: 150px" class="epoch"/>');
 
-            $.get('../parsed/' + room.id + '.json', function(roomData) {
+            getRequests.push($.get('../parsed/' + room.id + '.json', function(roomData) {
                 var firstValue = roomData[0].values[0];
                 var lastValue = roomData[0].values[roomData[0].values.length - 1];
                 $('#current_users_' + room.id).text(lastValue.y + ' WLAN-Nutzer (' + moment(lastValue.x).fromNow() + ')');
@@ -58,10 +71,13 @@ $(document).ready(function() {
                     $('#notes_' + room.id).html(room.notes);
                 }
                 if (room.fullAt != undefined) {
+                    array[index].state=lastValue.y/room.fullAt;
                     roomData.push({
                         label: 'max',
                         values: [{x: firstValue.x, y: room.fullAt}, {x: lastValue.x, y: room.fullAt}]
                     });
+                }else{
+                    array[index].state=666; 
                 }
                 $('#plot_' + room.id).epoch({
                     type: 'line',
@@ -70,6 +86,42 @@ $(document).ready(function() {
                     tickFormats: {bottom: function(d) { return moment(d).calendar(); }},
                     axes: ['left', 'bottom'],
                 });
+            }));
+        });
+        $.when.apply($,getRequests).then(function() {
+            roomsSpec.sort(function(a,b){
+            if(a.state==0)return 1;
+            if(b.state==0)return -1;
+            return a.state>b.state});
+            var list = $('#roomRanks');
+            roomsSpec.forEach(function(element) {
+                if(element.state!=666){
+                    var liClass="";
+                    if(element.state>0.75){liClass="veryFull";}
+                    else if(element.state>0.5){liClass="full";}
+                    else if(element.state!=0){liClass="normal";}
+                    restTime = isRoomOpen(element.openTimes.workdays.open,element.openTimes.workdays.close);
+                    restText="";
+                    if(restTime!=0){
+                         restTime = new Date(restTime);
+                         restText="Schließt in ";
+                         hours="";
+                         minutes="";
+                         fill="";
+                         if(restTime.getHours()>0){
+                             hours=restTime.getHours()+" Stunden";
+                         }
+                         if(restTime.getHours()>0&&restTime.getMinutes()>0){
+                             fill =" und ";
+                         }
+                         if(restTime.getMinutes()>0){
+                             minutes = restTime.getMinutes()+" Minuten";
+                         }
+                         list.append('<li class ="'+liClass+'">' + element.name + ' ( ' + Math.round(element.state*100) + ' % ) '+restText+hours+fill+minutes+'</li>');
+                    }else if(element.state*100>25){
+                         list.append('<li class ="'+liClass+'">' + element.name + ' ( ' + Math.round(element.state*100) + ' % ) '+ ' Eigentlich bereits geschlossen</li>');
+                    }
+                }
             });
         });
     });
@@ -90,5 +142,6 @@ $(document).ready(function() {
                 <a href="about.html">über diese Seite / about</a>
             </div>
         </div>
+        <ol id="roomRanks"></ol>
     </body>
 </html>
