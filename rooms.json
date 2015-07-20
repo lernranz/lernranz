@@ -4,8 +4,22 @@
         "id": "sparkassenforum",
         "aps": ["ap-1040-2ugl", "ap-1040-2ugm", "ap-1040-2ugr"],
         "fullAt": 440
-        "address":"Templergraben 57"
+        "address": "Templergraben 57"
         "room": "Sparkassenforum"
+        "openTimes": {
+            "workdays":{
+                "open": 9
+                "close": 22
+            }
+            "saturday":{
+                "open": -1
+                "close": -1
+            }
+            "sunday":{
+                "open": -1
+                "close": -1
+            }
+        }
     },
     {
         "name": "Mogam",
@@ -15,16 +29,45 @@
             "ap-1060-2ogv", "ap-1060-2ogh", "ap-1060-3ogv"
         ],
         "fullAt": 235
-        "address":"Kármánstr. 15a"
-        "room":"MOGAM"
+        "address": "Kármánstr. 15a"
+        "room": "MOGAM"
+        "openTimes": {
+            "workdays":{
+                "open": 7
+                "close": 20
+            }
+            "saturday":{
+                "open": 7
+                "close": 20
+            }
+            "sunday":{
+                "open": 7
+                "close": 20
+            }
+        }
     },
     {
         "name": "Audimax-Keller",
         "id": "audimax_keller",
         "aps": ["ap-1420-hausmeister", "ap-1420-hungerkurve"],
         "fullAt": 190
-        "address":"Wüllnerstr. 9"
-        "room":"Großer und Kleiner Lernraum"
+        "notes": "Am Wochenende hat nur der große Lernraum offen"
+        "address": "Wüllnerstr. 9"
+        "room": "Großer und Kleiner Lernraum"
+        "openTimes": {
+            "workdays":{
+                "open": 7.5
+                "close": 21.5
+            }
+            "saturday":{
+                "open": 9
+                "close": 21
+            }
+            "sunday":{
+                "open": 9
+                "close": 21
+            }
+        }
     },
     {
         "name": "Semi90",
@@ -32,15 +75,43 @@
         "aps": ["ap-1580-110", "ap-1580-210", "ap-1580-212", "ap-1580-309", "ap-1580-315"],
         "notes": "in der VL-Zeit meist belegt durch Seminare. <a href=\"https://www.campus.rwth-aachen.de/rwth/all/roomGroups.asp?room=1580\">Belegungsplan</a>",
         "fullAt": 315
-        "address":"Templergraben 90"
-        "room":"SE001-209"
+        "address": "Templergraben 90"
+        "room": "SE001-209"
+        "openTimes": {
+            "workdays":{
+                "open": 8
+                "close": 2
+            }
+            "saturday":{
+                "open": 8
+                "close": 2
+            }
+            "sunday":{
+                "open": 8
+                "close": 2
+            }
+        }
     },
     {
         "name": "Semi-Temp",
         "id": "semitemp",
         "aps": ["ap-1665-1","ap-1665-2","ap-1665-3","ap-1665-4","ap-1665-5","ap-1665-6","ap-1665-7"],
         "notes": "in der VL-Zeit meist belegt durch Seminare. <a href=\"https://www.campus.rwth-aachen.de/rwth/all/roomGroups.asp?room=1665\">Belegungsplan</a>"
-        "address":"Schinkelstr. 15"
-        "room":"ST 1-7"
+        "address": "Schinkelstr. 15"
+        "room": "ST 1-7"
+        "openTimes": {
+            "workdays":{
+                "open": 8
+                "close": 24
+            }
+            "saturday":{
+                "open": 9
+                "close": 24
+            }
+            "sunday":{
+                "open": 11
+                "close": 24
+            }
+        }
     }
 ]
