@@ -96,7 +96,7 @@
         "name": "Semi-Temp",
         "id": "semitemp",
         "aps": ["ap-1665-1","ap-1665-2","ap-1665-3","ap-1665-4","ap-1665-5","ap-1665-6","ap-1665-7"],
-        "notes": "in der VL-Zeit meist belegt durch Seminare. <a href=\"https://www.campus.rwth-aachen.de/rwth/all/roomGroups.asp?room=1665\">Belegungsplan</a>"
+        "notes": "in der VL-Zeit meist belegt durch Seminare. <a href=\"https://www.campus.rwth-aachen.de/rwth/all/roomGroups.asp?room=1665\">Belegungsplan</a>",
         "address": "Schinkelstr. 15",
         "room": "ST 1-7",
         "openTimes": {
