@@ -20,6 +20,17 @@ span.notes {
 }
         </style>
         <script>
+function isRoomOpen(open,close){
+    var now = new Date();
+    nextDay = 0;
+    if(open==close)return 0;
+    if(close<open){nextDay=1};
+    minDate = new Date((now.getMonth() + 1) + " " + now.getDate() + ", " + now.getFullYear() + " " + open + ":00");
+    maxDate = new Date((now.getMonth() + 1) + " " + (now.getDate()+nextDay) + ", " + now.getFullYear() + " " + close + ":00");
+    if(now.getTime() < minDate.getTime()) return 0;
+    if(now.getTime() > maxDate.getTime()) return 0;
+    return maxDate.getTime()-now.getTime();
+}
 $(document).ready(function() {
     moment.locale('en', {
         calendar: {
@@ -79,6 +90,8 @@ $(document).ready(function() {
         });
         $.when.apply($,getRequests).then(function() {
             roomsSpec.sort(function(a,b){
+            if(a.state==0)return 1;
+            if(b.state==0)return -1;
             return a.state>b.state});
             var list = $('#roomRanks');
             roomsSpec.forEach(function(element) {
@@ -87,7 +100,27 @@ $(document).ready(function() {
                     if(element.state>0.75){liClass="veryFull";}
                     else if(element.state>0.5){liClass="full";}
                     else if(element.state!=0){liClass="normal";}
-                    list.append('<li class ="'+liClass+'">' + element.name + ' ( ' + Math.round(element.state*100) + ' % )</li>');
+                    restTime = isRoomOpen(element.openTimes.workdays.open,element.openTimes.workdays.close);
+                    restText="";
+                    if(restTime!=0){
+                         restTime = new Date(restTime);
+                         restText="Schließt in ";
+                         hours="";
+                         minutes="";
+                         fill="";
+                         if(restTime.getHours()>0){
+                             hours=restTime.getHours()+" Stunden";
+                         }
+                         if(restTime.getHours()>0&&restTime.getMinutes()>0){
+                             fill =" und ";
+                         }
+                         if(restTime.getMinutes()>0){
+                             minutes = restTime.getMinutes()+" Minuten";
+                         }
+                         list.append('<li class ="'+liClass+'">' + element.name + ' ( ' + Math.round(element.state*100) + ' % ) '+restText+hours+fill+minutes+'</li>');
+                    }else if(element.state*100>25){
+                         list.append('<li class ="'+liClass+'">' + element.name + ' ( ' + Math.round(element.state*100) + ' % ) '+ ' Eigentlich bereits geschlossen</li>');
+                    }
                 }
             });
         });
