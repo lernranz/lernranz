@@ -21,3 +21,12 @@ div#header {
     width: 100%;
     margin-bottom: 10px;
 }
+.veryFull {
+    color: red;
+}
+.full {
+    color: orange;
+}
+.normal {
+    color: green;
+}
