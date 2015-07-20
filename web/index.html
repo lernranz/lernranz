@@ -42,10 +42,10 @@ $(document).ready(function() {
         }
     });
     var getRequests=[];
-    var roomRanks=[];
+    var roomsSpec = [];
     $.get('../rooms.json', function(spec) {
         roomsSpec = spec;
-        roomsSpec.forEach(function(room) {
+        roomsSpec.forEach(function(room,index,array) {
             $('body').append('<h2>' + room.name + '</h2>');
             $('body').append('<span id="current_users_' + room.id + '" class="current_users"/>');
             $('body').append('<span id="notes_' + room.id + '" class="notes" />');
@@ -60,15 +60,14 @@ $(document).ready(function() {
                     $('#notes_' + room.id).html(room.notes);
                 }
                 if (room.fullAt != undefined) {
-                    room.state=lastValue.y/room.fullAt;
+                    array[index].state=lastValue.y/room.fullAt;
                     roomData.push({
                         label: 'max',
                         values: [{x: firstValue.x, y: room.fullAt}, {x: lastValue.x, y: room.fullAt}]
                     });
                 }else{
-                    room.state=666; 
+                    array[index].state=666; 
                 }
-                roomRanks.push({'name':room.name,'state':room.state});
                 $('#plot_' + room.id).epoch({
                     type: 'line',
                     data: roomData,
@@ -78,13 +77,13 @@ $(document).ready(function() {
                 });
             }));
         });
-         $.when.apply($,getRequests).then(function() {
-            roomRanks.sort(function(a,b){
+        $.when.apply($,getRequests).then(function() {
+            roomsSpec.sort(function(a,b){
             if(a.state==0)return 1;
             if(b.state==0)return -1;
             return a.state>b.state});
             var list = $('#roomRanks');
-            roomRanks.forEach(function(element) {
+            roomsSpec.forEach(function(element) {
                 if(element.state!=666){
                     var liClass="";
                     if(element.state>0.75){liClass="veryFull";}
