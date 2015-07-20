@@ -41,7 +41,7 @@ for room in roomsSpec:
         parsedData = [{'label': 'Nutzer', 'values': []}]
     roomFiles[room['name']] = {'filename': parsedFilePath, 'file': parsedData}
 
-print('last_parsed_date=' + str(last_parsed_date))
+print('last_parsed_date = ', last_parsed_date)
 
 p = Path('.')
 files = list(p.glob('raw/*.json.gz'))
@@ -56,9 +56,7 @@ for f in files:
     if (date <= last_parsed_date):
         continue
 
-    roomCounts = {}
-    for room in roomsSpec:
-        roomCounts[room['name']] = 0
+    roomCounts = {room['name']: 0 for room in roomsSpec}
 
     decompressed = gzip.open(str(f), mode='r')
     try:
@@ -75,7 +73,7 @@ for f in files:
             'x': utc_mstimestamp(date),
             'y': roomCounts[room['name']]})
 
-    print(str(date) + ' ' + str(roomCounts))
+    print(date, roomCounts)
 
     #sys.exit()
 
@@ -83,8 +81,6 @@ parsedDir = Path('parsed')
 if not parsedDir.is_dir():
     parsedDir.mkdir()
 for room in roomsSpec:
-    import pprint
-    #pprint.pprint(roomFiles[room['name']]['file'])
     json.dump(roomFiles[room['name']]['file'], open(roomFiles[room['name']]['filename'], mode='w'))
 
 
