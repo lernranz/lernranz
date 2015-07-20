@@ -42,6 +42,7 @@ $(document).ready(function() {
         }
     });
     var getRequests=[];
+    var roomsSpec = [];
     $.get('../rooms.json', function(spec) {
         roomsSpec = spec;
         roomsSpec.forEach(function(room,index,array) {
@@ -77,12 +78,12 @@ $(document).ready(function() {
             }));
         });
         $.when.apply($,getRequests).then(function() {
-            roomSpec.sort(function(a,b){
+            roomsSpec.sort(function(a,b){
             if(a.state==0)return 1;
             if(b.state==0)return -1;
             return a.state>b.state});
             var list = $('#roomRanks');
-            roomSpec.forEach(function(element) {
+            roomsSpec.forEach(function(element) {
                 if(element.state!=666){
                     var liClass="";
                     if(element.state>0.75){liClass="veryFull";}
