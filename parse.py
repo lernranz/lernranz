@@ -61,7 +61,11 @@ for f in files:
         roomCounts[room['name']] = 0
 
     decompressed = gzip.open(str(f), mode='r')
-    parsed = json.load(io.TextIOWrapper(decompressed))
+    try:
+        parsed = json.load(io.TextIOWrapper(decompressed))
+    except ValueError:
+        print('{0} is malformed json, renaming to {0}.broken'.format(str(f)))
+        f.rename(str(f) + '.broken')
     for ap in parse_aps(parsed['data']):
         if ap['name'] in aps:
             roomCounts[aps[ap['name']]] += int(ap['user'])
