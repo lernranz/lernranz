@@ -31,6 +31,7 @@
             "ap-1060-2ogv", "ap-1060-2ogh", "ap-1060-3ogv"
         ],
         "fullAt": 235,
+        "notes": "Oftmals auch nach offiziellen schließen noch offen"
         "address": "Kármánstr. 15a",
         "room": "MOGAM",
         "openTimes": {
@@ -55,7 +56,7 @@
         "id": "audimax_keller",
         "aps": ["ap-1420-hausmeister", "ap-1420-hungerkurve"],
         "fullAt": 190,
-        "notes": "Am Wochenende hat nur der große Lernraum offen </br> Kein Strom im kleinen Lernraum",
+        "notes": "Am Wochenende hat nur der große Lernraum offen, Kein Strom im kleinen Lernraum",
         "address": "Wüllnerstr. 9",
         "room": "Großer und Kleiner Lernraum",
         "openTimes": {
