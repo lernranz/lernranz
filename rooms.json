@@ -8,8 +8,8 @@
         "room": "Sparkassenforum",
         "openTimes": {
             "workdays":{
-                "open": 9,
-                "close": 22
+                "open": "09:00",
+                "close": "22:00"
             },
             "saturday":{
                 "open": -1,
@@ -35,16 +35,16 @@
         "room": "MOGAM",
         "openTimes": {
             "workdays":{
-                "open": 7,
-                "close": 20
+                "open": "07:00",
+                "close": "20:00"
             },
             "saturday":{
-                "open": 7,
-                "close": 20
+                "open": "07:00",
+                "close": "20:00"
             },
             "sunday":{
-                "open": 7,
-                "close": 20
+                "open": "07:00",
+                "close": "20:00"
             }
         },
         "silentLearning":false,
@@ -60,16 +60,16 @@
         "room": "Großer und Kleiner Lernraum",
         "openTimes": {
             "workdays":{
-                "open": 7.5,
-                "close": 21.5
+                "open": "07:30",
+                "close": "21:30"
             },
             "saturday":{
-                "open": 9,
-                "close": 21
+                "open": "09:00",
+                "close": "21:00"
             },
             "sunday":{
-                "open": 9,
-                "close": 21
+                "open": "09:00",
+                "close": "21:00"
             }
         },
         "silentLearning":false,
@@ -85,16 +85,16 @@
         "room": "SE001-209",
         "openTimes": {
             "workdays":{
-                "open": 8,
-                "close": 2
+                "open": "08:00",
+                "close": "02:00"
             },
             "saturday":{
-                "open": 8,
-                "close": 2
+                "open": "08:00",
+                "close": "02:00"
             },
             "sunday":{
-                "open": 8,
-                "close": 2
+                "open": "08:00",
+                "close": "02:00"
             }
         },
         "silentLearning":true,
@@ -109,16 +109,16 @@
         "room": "ST 1-7",
         "openTimes": {
             "workdays":{
-                "open": 8,
-                "close": 24
+                "open": "08:00",
+                "close": "24:00"
             },
             "saturday":{
-                "open": 9,
-                "close": 24
+                "open": "09:00",
+                "close": "24:00"
             },
             "sunday":{
-                "open": 11,
-                "close": 24
+                "open": "11:00",
+                "close": "24:00"
             }
         },
         "silentLearning":false,
