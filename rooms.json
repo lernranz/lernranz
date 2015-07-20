@@ -9,15 +9,15 @@
         "openTimes": {
             "workdays":{
                 "open": 9,
-                "close": 22,
+                "close": 22
             },
             "saturday":{
                 "open": -1,
-                "close": -1,
+                "close": -1
             },
             "sunday":{
                 "open": -1,
-                "close": -1,
+                "close": -1
             }
         },
         "silentLearning": false,
@@ -36,15 +36,15 @@
         "openTimes": {
             "workdays":{
                 "open": 7,
-                "close": 20,
+                "close": 20
             },
             "saturday":{
                 "open": 7,
-                "close": 20,
+                "close": 20
             },
             "sunday":{
                 "open": 7,
-                "close": 20,
+                "close": 20
             }
         },
         "silentLearning":false,
@@ -61,15 +61,15 @@
         "openTimes": {
             "workdays":{
                 "open": 7.5,
-                "close": 21.5,
+                "close": 21.5
             },
             "saturday":{
                 "open": 9,
-                "close": 21,
+                "close": 21
             },
             "sunday":{
                 "open": 9,
-                "close": 21,
+                "close": 21
             }
         },
         "silentLearning":false,
@@ -86,15 +86,15 @@
         "openTimes": {
             "workdays":{
                 "open": 8,
-                "close": 2,
+                "close": 2
             },
             "saturday":{
                 "open": 8,
-                "close": 2,
+                "close": 2
             },
             "sunday":{
                 "open": 8,
-                "close": 2,
+                "close": 2
             }
         },
         "silentLearning":true,
@@ -110,15 +110,15 @@
         "openTimes": {
             "workdays":{
                 "open": 8,
-                "close": 24,
+                "close": 24
             },
             "saturday":{
                 "open": 9,
-                "close": 24,
+                "close": 24
             },
             "sunday":{
                 "open": 11,
-                "close": 24,
+                "close": 24
             }
         },
         "silentLearning":false,
