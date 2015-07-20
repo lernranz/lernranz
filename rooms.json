@@ -12,12 +12,12 @@
                 "close": "22:00"
             },
             "saturday":{
-                "open": -1,
-                "close": -1
+                "open": "0",
+                "close": "0"
             },
             "sunday":{
-                "open": -1,
-                "close": -1
+                "open": "0",
+                "close": "0"
             }
         },
         "silentLearning": false,
