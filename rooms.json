@@ -19,7 +19,9 @@
                 "open": -1,
                 "close": -1,
             }
-        }
+        },
+        "silentLearning": false,
+        "powerPlugs":true
     },
     {
         "name": "Mogam",
@@ -44,14 +46,16 @@
                 "open": 7,
                 "close": 20,
             }
-        }
+        },
+        "silentLearning":false,
+        "powerPlugs":true
     },
     {
         "name": "Audimax-Keller",
         "id": "audimax_keller",
         "aps": ["ap-1420-hausmeister", "ap-1420-hungerkurve"],
         "fullAt": 190,
-        "notes": "Am Wochenende hat nur der große Lernraum offen",
+        "notes": "Am Wochenende hat nur der große Lernraum offen </br> Kein Strom im kleinen Lernraum",
         "address": "Wüllnerstr. 9",
         "room": "Großer und Kleiner Lernraum",
         "openTimes": {
@@ -67,7 +71,9 @@
                 "open": 9,
                 "close": 21,
             }
-        }
+        },
+        "silentLearning":false,
+        "powerPlugs":true
     },
     {
         "name": "Semi90",
@@ -90,7 +96,9 @@
                 "open": 8,
                 "close": 2,
             }
-        }
+        },
+        "silentLearning":true,
+        "powerPlugs":true
     },
     {
         "name": "Semi-Temp",
@@ -112,6 +120,8 @@
                 "open": 11,
                 "close": 24,
             }
-        }
+        },
+        "silentLearning":false,
+        "powerPlugs":true
     }
 ]
