@@ -5,23 +5,15 @@
         "aps": ["ap-1040-2ugl", "ap-1040-2ugm", "ap-1040-2ugr"],
         "fullAt": 440,
         "address": "Templergraben 57",
-        "room": "Sparkassenforum",
-        "openTimes": {
-            "workdays":{
+        "officialName": "Sparkassenforum",
+        "openingHours": {
+            "workdays": {
                 "open": "09:00",
                 "close": "22:00"
-            },
-            "saturday":{
-                "open": "0",
-                "close": "0"
-            },
-            "sunday":{
-                "open": "0",
-                "close": "0"
             }
         },
-        "silentLearning": false,
-        "powerPlugs":true
+        "silentStudying": false,
+        "powerSockets": true
     },
     {
         "name": "Mogam",
@@ -31,50 +23,50 @@
             "ap-1060-2ogv", "ap-1060-2ogh", "ap-1060-3ogv"
         ],
         "fullAt": 235,
-        "notes": "Oftmals auch nach offiziellen schließen noch offen",
+        "notes": "oftmals auch nach offiziellem Schließen noch geöffnet",
         "address": "Kármánstr. 15a",
-        "room": "MOGAM",
-        "openTimes": {
-            "workdays":{
+        "officialName": "MOGAM",
+        "openingHours": {
+            "workdays": {
                 "open": "07:00",
                 "close": "20:00"
             },
-            "saturday":{
+            "saturday": {
                 "open": "07:00",
                 "close": "20:00"
             },
-            "sunday":{
+            "sunday": {
                 "open": "07:00",
                 "close": "20:00"
             }
         },
-        "silentLearning":false,
-        "powerPlugs":true
+        "silentStudying": false,
+        "powerSockets":true
     },
     {
         "name": "Audimax-Keller",
         "id": "audimax_keller",
         "aps": ["ap-1420-hausmeister", "ap-1420-hungerkurve"],
         "fullAt": 190,
-        "notes": "Am Wochenende hat nur der große Lernraum offen, Kein Strom im kleinen Lernraum",
+        "notes": "am Wochenende hat nur der große Lernraum geöffnet, kein Strom im kleinen Lernraum",
         "address": "Wüllnerstr. 9",
-        "room": "Großer und Kleiner Lernraum",
-        "openTimes": {
-            "workdays":{
+        "officialName": "Großer und Kleiner Lernraum",
+        "openingHours": {
+            "workdays": {
                 "open": "07:30",
                 "close": "21:30"
             },
-            "saturday":{
+            "saturday": {
                 "open": "09:00",
                 "close": "21:00"
             },
-            "sunday":{
+            "sunday": {
                 "open": "09:00",
                 "close": "21:00"
             }
         },
-        "silentLearning":false,
-        "powerPlugs":true
+        "silentStudying": false,
+        "powerSockets": true
     },
     {
         "name": "Semi90",
@@ -83,23 +75,23 @@
         "notes": "in der VL-Zeit meist belegt durch Seminare. <a href=\"https://www.campus.rwth-aachen.de/rwth/all/roomGroups.asp?room=1580\">Belegungsplan</a>",
         "fullAt": 315,
         "address": "Templergraben 90",
-        "room": "SE001-209",
-        "openTimes": {
-            "workdays":{
+        "officialName": "SE001-209",
+        "openingHours": {
+            "workdays": {
                 "open": "08:00",
                 "close": "02:00"
             },
-            "saturday":{
+            "saturday": {
                 "open": "08:00",
                 "close": "02:00"
             },
-            "sunday":{
+            "sunday": {
                 "open": "08:00",
                 "close": "02:00"
             }
         },
-        "silentLearning":true,
-        "powerPlugs":true
+        "silentStudying": true,
+        "powerSockets": true
     },
     {
         "name": "Semi-Temp",
@@ -107,8 +99,8 @@
         "aps": ["ap-1665-1","ap-1665-2","ap-1665-3","ap-1665-4","ap-1665-5","ap-1665-6","ap-1665-7"],
         "notes": "in der VL-Zeit meist belegt durch Seminare. <a href=\"https://www.campus.rwth-aachen.de/rwth/all/roomGroups.asp?room=1665\">Belegungsplan</a>",
         "address": "Schinkelstr. 15",
-        "room": "ST 1-7",
-        "openTimes": {
+        "officialName": "ST 1-7",
+        "openingHours": {
             "workdays":{
                 "open": "08:00",
                 "close": "24:00"
@@ -122,7 +114,7 @@
                 "close": "24:00"
             }
         },
-        "silentLearning":false,
-        "powerPlugs":true
+        "silentStudying": false,
+        "powerSockets": true
     }
 ]
