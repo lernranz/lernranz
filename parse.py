@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from datetime import datetime,timedelta
+from datetime import datetime,timedelta,timezone
 import gzip
 import io
 import json
@@ -15,11 +15,11 @@ def parse_aps(json_data):
             yield ap
 
 def utc_mstimestamp(dt):
-    return int((dt - datetime.datetime(1970, 1, 1, tzinfo=datetime.timezone.utc)).total_seconds() * 1000)
+    return int((dt - datetime(1970, 1, 1, tzinfo=timezone.utc)).total_seconds() * 1000)
 
 
-date_now = datetime.datetime.now(datetime.timezone.utc)
-threshold = date_now - datetime.timedelta(days=7) # ideally 7 days
+date_now = datetime.now(timezone.utc)
+threshold = date_now - timedelta(days=7) # ideally 7 days
 
 aps = {}
 roomsSpec = json.load(open('rooms.json'))
@@ -32,11 +32,11 @@ for room in roomsSpec:
     if Path(parsedFilePath).is_file():
         parsedData = json.load(open(parsedFilePath))
         parsedData[0]['values'] = [i for i in parsedData[0]['values']
-                if threshold < datetime.datetime.fromtimestamp(i['x']/1000, tz=datetime.timezone.utc)]
+                if threshold < datetime.fromtimestamp(i['x']/1000, tz=timezone.utc)]
         if len(parsedData[0]['values']) > 0:
-            last_parsed_date = datetime.datetime.fromtimestamp(
+            last_parsed_date = datetime.fromtimestamp(
                     parsedData[0]['values'][-1]['x']/1000,
-                    tz=datetime.timezone.utc)
+                    tz=timezone.utc)
     else:
         parsedData = [{'label': 'Nutzer', 'values': []}]
     roomFiles[room['name']] = {'filename': parsedFilePath, 'file': parsedData}
@@ -53,7 +53,7 @@ for f in files:
             r"^raw/(\d+)-(\d+)-(\d+)T(\d+):(\d+):(\d+)([+-]\d+):(\d+).json.gz$",
             r"\1-\2-\3T\4:\5:\6\7\8",
             str(f))
-    date = datetime.datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S%z")
+    date = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S%z")
     if (date <= last_parsed_date):
         continue
 
@@ -73,7 +73,7 @@ for f in files:
 
     for room in roomsSpec:
         dead=False
-        if((date-lastDate))>timedelta(hours=2)):
+        if (date-lastDate) > timedelta(hours=2):
             dead=True
         roomFiles[room['name']]['file'][0]['values'].append({
             'x': utc_mstimestamp(date),
