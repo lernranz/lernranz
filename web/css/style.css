@@ -1,7 +1,7 @@
 
 
 h1 {
-    border-bottom: 1px solid black;
+    display: inline;
 }
 h1 a {
     color: inherit;
@@ -11,4 +11,13 @@ p {
     max-width: 600px;
     text-align: justify;
     margin: 0px 0px 5px 0px;
+}
+
+div#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid black;
+    width: 100%;
+    margin-bottom: 10px;
 }
