@@ -6,9 +6,11 @@
         <script src="js/jquery.js"></script>
         <script src="js/d3.min.js"></script>
         <script src="js/epoch.min.js"></script>
+        <script src="js/metricsgraphics.min.js"></script>
         <script src="js/moment-with-locales.min.js"></script>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/epoch.min.css">
+        <link rel="stylesheet" type="text/css" href="css/metricsgraphics.css">
         <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
         <style>
 h2 {
@@ -42,6 +44,7 @@ $(document).ready(function() {
             sameElse: 'L HH:mm'
         }
     });
+    MG.charts.line.rollover = function() {};
     $.get('../rooms.json', function(spec) {
         roomsSpec = spec;
         roomsSpec.forEach(function(room) {
@@ -54,6 +57,7 @@ $(document).ready(function() {
             $('body').append(roomDiv);
 
             $.get('../parsed/' + room.id + '.json', function(roomData) {
+            //d3.json('../parsed/' + room.id + '.json', function(roomData) {
                 var firstValue = roomData[0].values[0];
                 var lastValue = roomData[0].values[roomData[0].values.length - 1];
                 $('#current_users_' + room.id).text(lastValue.y + ' WLAN-Nutzer (' + moment(lastValue.x).fromNow() + ')');
@@ -66,13 +70,30 @@ $(document).ready(function() {
                         values: [{x: firstValue.x, y: room.fullAt}, {x: lastValue.x, y: room.fullAt}]
                     });
                 }
-                $('#plot_' + room.id).epoch({
+                roomData[0].values.forEach(function(p) {
+                    p.x = new Date(p.x);
+                });
+                var plotDiv = $('#plot_' + room.id);
+                MG.data_graphic({
+                    data: roomData[0].values,
+                    target: '#plot_' + room.id,
+                    x_accessor: 'x',
+                    y_accessor: 'y',
+                    width: roomDiv.width(),
+                    height: roomDiv.height(),
+                    area: false,
+                    buffer: 0,
+                    show_secondary_x_label: false,
+                    //show_rollover_text: false,
+                    min_y_from_data: true
+                });
+                /*$('#plot_' + room.id).epoch({
                     type: 'line',
                     data: roomData,
                     ticks: {bottom: 7},
                     tickFormats: {bottom: function(d) { return moment(d).calendar(); }},
                     axes: ['left', 'bottom'],
-                });
+                });*/
             });
         });
     });
